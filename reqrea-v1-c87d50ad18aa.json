@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "reqrea-v1",
+  "private_key_id": "c87d50ad18aa43efed7f1fcd242dc62e2b18eab3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCxOB6qVdUzc+gs\n6aZf6TxhYzuDU+IeIo2WAFvCyihsA4y9xTB0SCG0sEcIu0shEcH7BJq4v3eNbvVX\nx0KYm+HptOpVoK2SZAfUn7COJ1fjsZsvIHDxE/g0UVO6bEqIFRYGx6xhdql38HnJ\n15QsRQId+pelVLnEM6siNI51XV2SZMYnoc0E1Phg/3PP/2k4b3TKpB0h/VtcZU5Y\nYYtIwbXQbW2Z1QrYiBhhDu+qcOAxSkunKdqUFJKXNFc9ZM4VmTB6WffqAExVms/1\n2K1JM8NL7+Kg3o4BsGg4+MRkB+WwyCG4L33UuEfhaL31X6Jy+OGnxPDQQeEvZTpQ\ngUkgJ2G1AgMBAAECggEADf+dln1gsaeEbbXIFVfmU9gDjbBc0l4O2owtM2IGFuAh\n6CSRGwJOnUf2WHd47AQL01DuCs1e+25KFXSxKz5W9j+66egfBcr+flpd1yC+9caj\n+DFDEpvt9W3+I+HlckHeI0t275zwrn9xk1LCystpqyYN//qFEP021aUaoqUtHMDU\nxbnbk2I1ZHr2nghxP0KzM+najK8yZaTHIQUogvBJ0Bh0GiaQyqC/XukTc6K1I6+I\ntJoZWUSZ5+G0ZPQ5eyJRxgtDIp5TarvIwEnDwl502G9624j8QOws6TBZVlR0M763\nyusniffidnfJV6JrteOIj2nOPPHSzuxmweXZir9L4QKBgQDptXLHc2ovKItn/wg0\nrIBhCkzYmSOOa7c74wFLSQs/S1yMZP1rtqQJTsJJd5RHLPGkkIFP/PstFjtF5qO/\n1necFpI8jL4e9W/9TrLuwQODWGeIDldG9Rx/iPES9cmabG/wwWedaGgN0cE8fuZr\nznxObNjdFUzBe6nMliNfvIndFQKBgQDCH1hpEM2wQBagca5pHcUkzn5iz0IQ2HCd\nWqU4sATB8Ix8vWIKT0xQ3AD+ogWK6oYatm9HTh+B8IGUDpw98ASeJqGVUSUMYD5u\naQ9QxFYFO4fk7PV90lbea7MODrmZxjvafZn/8U49YbhBKrmVLeBomvO1vBEwCKFx\n8Psr7ybaIQKBgQDYF6sCWmgjJJUJ2pkGwz2M/I4jdC2ZQWXSXMpUhzx8EL2JHtPn\npZ+073rbnVKgISFpbSf0AtFoVfcGYgSkm7RKweADVotwarZa/EqcUiFib/qCpefz\nNy5big6F3nfDbmJutRWOSPx1Uq4etqNtqSXtCd3XRhuLh0FwZp5cpiK/JQKBgQCG\nrjKrqmHan4xTQqwL+ACYWb+sFDm08EWploM9Ajo6yAbgYJCNsJi1HP5/q6+GwtHJ\n5Lrt0NDhWRi9vSk/e6/ofcrrisHWhUurVK6wjZdUyAmvlYt5AR8N79DptuOkQbmz\nDCN1RFjRE2Q/qkHZs1uXl7Hwa4vNNJ+2KshIogLloQKBgQCLzs0RuJs1oLsK9C9h\n9P+5A8qwc2V3Cy2glaySrq28puprvjtnm0qDEr1aQTIcH1ZpbNFOMH6V0P/Zkpj2\njt3tr8DL1nkAGNBr5I2lw20CZKYtOPJP3anDSlNKMujXM2ngHbv2anNtLQtZFV4Z\npxoaxFoYbb4IkWUW6mlD/d6ogg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "booking-v1@reqrea-v1.iam.gserviceaccount.com",
+  "client_id": "115865219696101594727",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/booking-v1%40reqrea-v1.iam.gserviceaccount.com"
+}
