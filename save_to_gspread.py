@@ -4,6 +4,7 @@ import pickle
 import datetime
 import csv
 import os
+import glob
 import pprint
 #ServiceAccountCredentials：Googleの各サービスへアクセスできるservice変数を生成します。
 from oauth2client.service_account import ServiceAccountCredentials
@@ -40,8 +41,10 @@ workbook = gc.open_by_key(SPREADSHEET_KEY)
 def main():
     # pickleからシートを作る。あったらスルー
     check_sheet()
-    # csvからgspreadに保存
+    # csvからgspreadに保存（今日だけ）
     save_booking()
+    # csvからgspreadに保存（全て）
+    # save_booking_all()
 
  
 def check_sheet():
@@ -60,7 +63,6 @@ def check_sheet():
             print(hotel['name'], 'は既に作成済みです')
 
 
-
 def save_booking():
     with open('hotel.pkl', 'rb') as f:
         hotel_pk = pickle.load(f)
@@ -77,6 +79,24 @@ def save_booking():
         working_worksheet.append_rows(append_list, value_input_option='USER_ENTERED')
 
 
+def save_booking_all():
+    with open('hotel.pkl', 'rb') as f:
+        hotel_pk = pickle.load(f)
+    
+    for hotel in hotel_pk:
+        print(hotel['name'])
+        save_names = hotel['save_dir'] + '*.csv'
+        hotel_all_csv_path = os.path.join('scrape', hotel['save_dir'], save_names)
+        hotel_all_csv_path_list = sorted(glob.glob(hotel_all_csv_path))
+        
+        write_list = []
+        for one_csv_path in hotel_all_csv_path_list:
+            with open(one_csv_path) as fp:
+                append_list = list(csv.reader(fp))
+            write_list.extend(append_list)
+        
+        working_worksheet = workbook.worksheet(hotel['name'])
+        working_worksheet.append_rows(write_list, value_input_option='USER_ENTERED')
 
 
 print("Saving to Google Spread Sheet...")
