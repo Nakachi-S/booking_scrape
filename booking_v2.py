@@ -7,6 +7,7 @@ import re
 import pickle
 import pprint
 import csv
+from joblib import Parallel, delayed
 
 # main関数
 # hotel.pklから基本的な情報を読み込む
@@ -17,9 +18,10 @@ def main():
     with open('hotel.pkl', 'rb') as f:
         hotel_pk = pickle.load(f)
     # ホテルの数だけforが回る
-    for hotel in hotel_pk:
-        urls = urls_get(hotel['url'])  # チェックインなどの指定。複数のurlが帰ってくる。
-        scrape(urls, hotel)
+    # for hotel in hotel_pk:
+    #     scrape(hotel)
+
+    Parallel(n_jobs=-1, verbose=3)([delayed(scrape)(hotel) for hotel in hotel_pk])
 
 
 # urls_get関数
@@ -38,17 +40,18 @@ def urls_get(url):
 # scrape関数
 # bs4を用いてwebから取得
 # 1実行で１ホテル
-def scrape(urls, hotel):
+def scrape(hotel):
+    urls = urls_get(hotel['url'])  # チェックインなどの指定。複数のurlが帰ってくる。
     head = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36"}
-    print('###########################')
-    print(hotel['name'])
-    print('###########################')
-    pprint.pprint(hotel)
+    # print('###########################')
+    # print(hotel['name'])
+    # print('###########################')
+    # pprint.pprint(hotel)
     save_list = []
     for url in urls:
-        print('###########################')
-        print(url)
+        # print('###########################')
+        # print(url)
         r = requests.get(url, headers=head)
         soup = BeautifulSoup(r.text, 'lxml')
         ###############################################
@@ -58,14 +61,14 @@ def scrape(urls, hotel):
         check_in = qs_d['checkin'][0]
         check_out = qs_d['checkout'][0]
         person = qs_d['group_adults'][0]
-        print(hotel['name'], created, check_in, check_out, person)
+        # print(hotel['name'], created, check_in, check_out, person)
         ################################################
         # ここまでurlなどから取得可能な情報
         # 以下は、実際にサイトから取得する
         try:  # table自体、無い場合がある
             table = soup.find('table', class_='hprt-table').find('tbody')
         except:
-            print('この日はbooking.comでは予約できません')
+            # print('この日はbooking.comでは予約できません')
             price = ''
             available = 0
             for room in hotel['rooms']:
@@ -94,7 +97,7 @@ def scrape(urls, hotel):
                                     available = re.sub("\\D", "", available)
                                     flg_avaliable = 1
                                 else:  # 無いなら1。
-                                    print('何室空いているかの情報がない。')
+                                    # print('何室空いているかの情報がない。')
                                     available = 1
                             elif td.find('div', class_='hprt-occupancy-occupancy-info'):  # 定員
                                 occupancy = td.find(
@@ -105,13 +108,13 @@ def scrape(urls, hotel):
                                 price = td.find('div', class_='hprt-price-block').find(
                                     'div', class_='bui-price-display__value').text.replace('\n', '')
                             elif td.find('div', class_='thisRoomAvailabilityNew') and flg_avaliable == 0:
-                                print('最初はなかったがこの列にあったよ！')
+                                # print('最初はなかったがこの列にあったよ！')
                                 available = td.find(
                                     'div', class_='thisRoomAvailabilityNew').text.replace('\n', '')
                                 available = re.sub("\\D", "", available)
 
             write_list = [room['id'], room['name'], check_in, check_out, price, person, available, created]
-            pprint.pprint(write_list)
+            # pprint.pprint(write_list)
             save_list.append(write_list)
     save_name = hotel['save_dir'] + '_' + datetime.date.today().strftime("%Y-%m-%d") + '.csv'
     # 保存するディレクトリ
