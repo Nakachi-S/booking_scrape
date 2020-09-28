@@ -124,6 +124,8 @@ def scrape(hotel):
         writer = csv.writer(f)
         writer.writerows(save_list)
 
+    print('Finish scraping :', hotel['name'])
+
 if __name__ == '__main__':
     print("Booking scraping start....")
     main()
