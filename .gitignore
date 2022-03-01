@@ -1,2 +1,5 @@
 scrape
 tmp
+.vscode
+__pycache__
+*.pyc

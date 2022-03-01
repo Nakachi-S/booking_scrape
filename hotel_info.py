@@ -53,8 +53,8 @@ def scrape(urls):
             # room['person'] = 0
             rooms.append(room)
 
-        save_dir = url.split('/')[-1].split('.')[0] # urlの一部を保存ディレクトリ名にする
-        
+        save_dir = url.split('/')[-1].split('.')[0]  # urlの一部を保存ディレクトリ名にする
+
         # 保存
         hotel_pk_tmp['name'] = name
         hotel_pk_tmp['save_dir'] = save_dir

@@ -21,7 +21,8 @@ def main():
     # for hotel in hotel_pk:
     #     scrape(hotel)
 
-    Parallel(n_jobs=-1, verbose=3)([delayed(scrape)(hotel) for hotel in hotel_pk])
+    Parallel(n_jobs=-1, verbose=3)([delayed(scrape)(hotel)
+                                    for hotel in hotel_pk])
 
 
 # urls_get関数
@@ -72,10 +73,11 @@ def scrape(hotel):
             price = ''
             available = 0
             for room in hotel['rooms']:
-                write_list = [room['id'], room['name'], check_in, check_out, price, person, available, created]
+                write_list = [room['id'], room['name'], check_in,
+                              check_out, price, person, available, created]
                 save_list.append(write_list)
             continue
-        
+
         for room in hotel['rooms']:
             room_name = ''
             available = 0
@@ -113,10 +115,12 @@ def scrape(hotel):
                                     'div', class_='thisRoomAvailabilityNew').text.replace('\n', '')
                                 available = re.sub("\\D", "", available)
 
-            write_list = [room['id'], room['name'], check_in, check_out, price, person, available, created]
+            write_list = [room['id'], room['name'], check_in,
+                          check_out, price, person, available, created]
             # pprint.pprint(write_list)
             save_list.append(write_list)
-    save_name = hotel['save_dir'] + '_' + datetime.date.today().strftime("%Y-%m-%d") + '.csv'
+    save_name = hotel['save_dir'] + '_' + \
+        datetime.date.today().strftime("%Y-%m-%d") + '.csv'
     # 保存するディレクトリ
     if not os.path.exists(os.path.join('scrape', hotel['save_dir'])):
         os.mkdir(hotel['save_dir'])
@@ -125,6 +129,7 @@ def scrape(hotel):
         writer.writerows(save_list)
 
     print('Finish scraping :', hotel['name'])
+
 
 if __name__ == '__main__':
     print("Booking scraping start....")
